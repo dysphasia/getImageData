@@ -16,18 +16,16 @@ USAGE
 
 
 
-  var canvas = document.getElementById('canvas');
-  var ctx = canvas.getContext('2d');
-  var imgData = ctx.getImageData(0,0,canvas.width, canvas.height);
-  var height = 10;
-  var width = 10;
-  
-  for (var y=0; y<canvas.height; y+=height) {
-		for (var x=0; x<canvas.width; x+=width) {			
-			var data = getImageDataFaster(x, y, width, height, canvas.width, canvas.height, imgData);
-      
-      ...
-      
-    }
-	}
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+var imgData = ctx.getImageData(0,0,canvas.width, canvas.height);
+var height = 10;
+var width = 10;
+
+for (var y=0; y<canvas.height; y+=height) {
+  for (var x=0; x<canvas.width; x+=width) {			
+    var data = getImageDataFaster(x, y, width, height, canvas.width, canvas.height, imgData);
+    ...
+  }
+}
     
