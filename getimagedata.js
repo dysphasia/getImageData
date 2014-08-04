@@ -16,18 +16,23 @@
  * W - width of the original image data
  * H - height of th original image data
  * d - image data (cache this once)
+ *
+ * Usage:
+ * -------
+ * var completeImage = new Uint32Array(ctx.getImageData(0,0,W,H).data.buffer),
+ *     imageData = getImageDataFaster(x,y,w,h,W,H,completeImage);
  */
     
 var getImageDataFaster = function (x, y, w, h, W, H, d) {
-  var arr = [];
+	var arr = new Uint32Array(w*h), i=0;
 
 	for (var r=y; r<h+y; r+=1) {
 		for (var c=x; c<w+x; c+=1) {
-			var O = ((r*W) + c) * 4; 
+			var O = ((r*W) + c); 
 			if (c<0 || c>=W || r<0 || r>=H) {
-  			arr.push(0,0,0,0);
+				arr[i++] = 0;
 			} else {
-				arr.push(d[O+0], d[O+1], d[O+2], d[O+3]);
+				arr[i++] = d[O];
 			}
 		}
 	}
